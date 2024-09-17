@@ -3,10 +3,13 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className='flex bg-dark_blue text-off_white justify-between p-5 '>
+    <>
+      <div className='min-h-1 bg-rusty_red mt-10'></div>
+      <footer className='flex bg-dark_blue text-off_white justify-between p-5 '>
+
         <div>
           <p>Follow us on</p>
-          
+
         </div>
 
         <div className='flex-col text-center'>
@@ -18,7 +21,9 @@ const Footer = () => {
           <p>Our email</p>
           <Link href='/'>streambook@796.gmail.com</Link>
         </div>
-    </footer>
+      </footer>
+    </>
+
   )
 }
 
