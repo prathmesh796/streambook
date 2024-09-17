@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={roboto.className}>
         <Navbar/>
-        <div className="mx-auto min-h-[87.8vh] bg-dark_blue">
+        <div className="mx-auto min-h-screen bg-dark_blue">
           {children}
         </div>
         <Footer/>

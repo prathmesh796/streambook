@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className='flex bg-dark_blue text-off_white justify-between p-5'>
+    <footer className='flex bg-dark_blue text-off_white justify-between p-5 '>
         <div>
           <p>Follow us on</p>
           
