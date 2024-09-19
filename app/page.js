@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <main>
-      <Image src='/bg-animation.gif' width={1520} height={300} alt='banner' />
+      <Image src='/bg-animation.gif' width={1520} height={300} alt='banner' priority />
       <div className='min-h-1 bg-rusty_red'></div>
 
 

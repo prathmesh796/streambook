@@ -1,42 +1,19 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import * as streamingAvailability from "streaming-availability";
+
 import {submitAction} from "@/actions/form";
 import { useRef } from "react";
 
 const Navbar = () => {
-  const handleSearch = async () => {
-    const RAPID_API_KEY = "9a493b1f28msh958f0a6e83ae3b6p1dab81jsnac8f73621345";
-
-    const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
-      apiKey: RAPID_API_KEY
-    }));
-
-    let data = await client.showsApi.searchShowsByTitle({
-      title: "Batman",
-      country: "in",
-    });
-
-    let a = await fetch('/api/add', {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    let res = await a.json()
-    console.log(res)
-  }
 
   let ref = useRef()
 
   return (
     <>
-      <nav className='bg-dark_blue  text-off_white flex justify-between py-5 px-10 '>
-        <div>
-          <h1 className='text-4xl'>StreamBook</h1>
+      <nav className='bg-dark_blue text-off_white flex justify-between align-middle py-5 px-10 '>
+        <div className=''>
+          <h1 className='text-4xl align-middle'>StreamBook</h1>
         </div>
 
         <form className="max-w-md mx-auto w-96" ref={ref} action={(e) => {{submitAction(e); ref.current.reset()}}}>
@@ -47,8 +24,8 @@ const Navbar = () => {
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
           </div>
-          <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies & Series..." required />
-          <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-rusty_red font-medium rounded-lg text-sm px-4 py-2" onClick={handleSearch} >Search</button>
+          <input name='default-search' type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies & Series..." required />
+          <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-rusty_red font-medium rounded-lg text-sm px-4 py-2" >Search</button>
         </div>
       </form>
 
