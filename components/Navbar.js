@@ -2,12 +2,25 @@
 import React from 'react'
 import Link from 'next/link'
 
-import {submitAction} from "@/actions/form";
 import { useRef } from "react";
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
 
   let ref = useRef()
+
+  const router = useRouter();  // Use next/navigation for client-side navigation
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const temp_title = formData.get('default-search');
+
+        // Redirect to the dynamic page with the search query
+        router.push(`/search/${temp_title}`);
+
+        ref.current.reset()
+    };
 
   return (
     <>
@@ -16,7 +29,7 @@ const Navbar = () => {
           <h1 className='text-4xl align-middle'>StreamBook</h1>
         </div>
 
-        <form className="max-w-md mx-auto w-96" ref={ref} action={(e) => {{submitAction(e); ref.current.reset()}}}>
+        <form className="max-w-md mx-auto w-96" ref={ref} onSubmit={handleSubmit}>
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
