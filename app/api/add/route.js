@@ -10,7 +10,7 @@ export async function POST(request) {
     try {
         let data = await request.json()
         console.log(data)
-        return NextResponse.json({ success: true, data })
+        return NextResponse.json()
     } catch (error) {
         console.error(error.NextResponse.data)
     }

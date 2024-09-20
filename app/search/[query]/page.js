@@ -29,8 +29,12 @@ export default async function Page({ params }) {
                 "Content-Type": "application/json",
             },
         })
-        let result = await response.arrayBuffer()
-        movies = result || [];
+        //let result = await response
+        console.log(response)
+        let keys = Object.keys(response);
+        keys.forEach(function (key) {
+            movies.push(response[key]);
+        });
     } catch (error) {
         console.error("Error fetching movie data: ", error);
     }
