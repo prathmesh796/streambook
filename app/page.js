@@ -1,18 +1,12 @@
 "use client"
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 
 export default function Home() {
-  
-
   return (
     <main>
       <Image src='/bg-animation.gif' width={1520} height={300} alt='banner' priority unoptimized />
       <div className='min-h-1 bg-rusty_red'></div>
-
-
-      
 
       <section className='mx-36 p-10 rounded-xl bg-black'>
         <h2 className='text-off_white text-xl p-5'>Recommended shows</h2>

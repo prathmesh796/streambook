@@ -1,4 +1,4 @@
-
+import SearchCard from "@/components/searchCard";
 
 import * as streamingAvailability from "streaming-availability";
 
@@ -9,7 +9,7 @@ function delay(ms) {
 export default async function Page({ params }) {
     const { query } = params;
 
-    const RAPID_API_KEY = "9a493b1f28msh958f0a6e83ae3b6p1dab81jsnac8f73621345";
+    const RAPID_API_KEY = process.env.API_KEY;
     const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
         apiKey: RAPID_API_KEY
     }));
@@ -22,35 +22,22 @@ export default async function Page({ params }) {
             country: "in",
         });
 
-        let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add`, {
-            method: "POST",
-            body: JSON.stringify({ data }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        //let result = await response
-        console.log(response)
-        let keys = Object.keys(response);
-        keys.forEach(function (key) {
-            movies.push(response[key]);
-        });
+        //console.log(data);
+        movies = data || []
+
     } catch (error) {
         console.error("Error fetching movie data: ", error);
     }
 
     return (
         <div className='text-white'>
-            <h1>Results for: {query}</h1>
+            <h1 className='text-3xl font-bold text-center p-10'>Results for: {query}</h1>
             {movies.length ? (
-                <ul>
-                    {movies.map((movie) => (
-                        <li key={movie.id}>
-                            <h2>{movie.title}</h2>
-                            <p>{movie.overview}</p>
-                        </li>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {movies.map(item => (
+                        <SearchCard key={item.id} title={item.title} poster={item.imageSet.verticalPoster.url} />
                     ))}
-                </ul>
+                </div>
             ) : (
                 <p>No movies found.</p>
             )}
