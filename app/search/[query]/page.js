@@ -1,4 +1,4 @@
-import SearchCard from "@/components/searchCard";
+import SearchCard from "@/components/SearchCard";
 
 import * as streamingAvailability from "streaming-availability";
 
@@ -33,9 +33,9 @@ export default async function Page({ params }) {
         <div className='text-white'>
             <h1 className='text-3xl font-bold text-center p-10'>Results for: {query}</h1>
             {movies.length ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-10">
                     {movies.map(item => (
-                        <SearchCard key={item.id} title={item.title} poster={item.imageSet.verticalPoster.url} />
+                        <SearchCard key={item.id} title={item.title} poster={item.imageSet?.verticalPoster?.w720} />
                     ))}
                 </div>
             ) : (
